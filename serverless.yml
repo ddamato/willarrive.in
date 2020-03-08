@@ -13,7 +13,7 @@ functions:
   active:
     handler: api/router.handler
     environment:
-      MTA_FEED_API_KEY: '${param:MTA_FEED_API_KEY}'
+      WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
     events:
       - http:
           method: get
