@@ -16,5 +16,5 @@ functions:
       WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
     events:
       - http:
-          path: '/'
+          path: /
           method: get
