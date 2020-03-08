@@ -1,3 +1,5 @@
+const FEED_API_URL_BASE = 'http://datamine.mta.info/mta_esi.php'; // ?key=KEY
+
 module.exports = [{
   feed_id: 1,
   lines: ['1', '2', '3', '4', '5', '6', 'S'],
