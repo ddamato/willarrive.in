@@ -1,6 +1,6 @@
 org: ddamato
 app: willarrive.in
-service: willarrive.in-service
+service: willarrivein-service
 
 frameworkVersion: ">=1.1.0 <2.0.0"
 
