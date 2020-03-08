@@ -13,3 +13,7 @@ functions:
     handler: api/router.handler
     environment:
       WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
+  feed:
+    handler: api/feed.handler
+    environment:
+      WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
