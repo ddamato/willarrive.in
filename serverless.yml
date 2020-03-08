@@ -10,10 +10,11 @@ provider:
   region: us-east-1
 
 functions:
-  active:
+  router:
     handler: api/router.handler
     environment:
       WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
     events:
       - http:
+          path: '/'
           method: get
