@@ -1,0 +1,19 @@
+org: ddamato
+app: willarrive.in
+service: willarrive.in-service
+
+frameworkVersion: ">=1.1.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-east-1
+
+functions:
+  active:
+    handler: api/router.handler
+    environment:
+      MTA_FEED_API_KEY: '${param:MTA_FEED_API_KEY}'
+    events:
+      - http:
+          method: get
