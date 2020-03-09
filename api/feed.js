@@ -1,9 +1,10 @@
-const headers = require('../lib/headers.js');
+const prepareHeaders = require('../lib/headers.js');
 
 module.exports.handler = (event, context, callback) => {
+  const headers = prepareHeaders(event);
   const response = {
     statusCode: 200,
-    headers: headers(event),
+    headers,
     body: JSON.stringify({ event }),
   };
   callback(null, response);
