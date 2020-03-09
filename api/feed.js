@@ -1,8 +1,8 @@
-module.exports.handler = async (event, context) => {
+module.exports.handler = async (event, context, callback) => {
   const response = {
     statusCode: 200,
     headers: { 'Access-Control-Allow-Origin': '*' },
-    body: JSON.stringify({ message: 'Hello World' }),
+    body: JSON.stringify({ event }),
   };
-  return response;
+  callback(null, response);
 }
