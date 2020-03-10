@@ -1,6 +1,6 @@
 const path = require('path');
 const nunjucks = require('nunjucks');
-const { findFeed } = require('../lib/feed.js');
+const { findFeedByEvent } = require('../lib/feed.js');
 
 const TIMETABLE_NJK_PATH = path.resolve(__dirname, '..', 'templates', 'timetable.njk');
 
@@ -11,7 +11,7 @@ module.exports.handler = (event, context, callback) => {
     headers: { Location }
   }
 
-  const feed = findFeed(event);
+  const feed = findFeedByEvent(event);
   if (feed) {
     response = {
       statusCode: 200,
