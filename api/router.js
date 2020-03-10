@@ -17,6 +17,7 @@ module.exports.handler = (event, context, callback) => {
       routeId: getLineByEvent(event),
       backgroundColor: feed.lineColor,
       foregroundColor: feed.foregroundColor,
+      assets: 'assets-bundle',
     });
     response = {
       statusCode: 200,
