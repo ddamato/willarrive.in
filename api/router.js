@@ -20,6 +20,7 @@ module.exports.handler = (event, context, callback) => {
     });
     response = {
       statusCode: 200,
+      headers: { 'Content-Type': 'text/html' },
       body,
     }
   }
