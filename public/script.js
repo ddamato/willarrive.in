@@ -3,8 +3,16 @@ function getPosition(options) {
 }
 
 async function init() {
-  const position = await getPosition();
-  console.log(position);
+  try {
+    const { coords } = await getPosition();
+    const response = await fetch(`/feed?latitude=${coords.latitude}&longitude=${coords.longitude}`)
+      .then((res) => res.json());
+    console.log(response);
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
-init();
+if (window.location.href !== 'https://willarrive.in/') {
+  init();
+}

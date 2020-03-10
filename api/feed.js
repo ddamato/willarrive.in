@@ -1,6 +1,6 @@
 const prepareHeaders = require('../lib/headers.js');
 const { 
-  findFeedByEvent,
+  getLineByEvent,
   findStationByCoords,
   findScheduleByStation
 } = require('../lib/feed.js');
@@ -13,12 +13,12 @@ module.exports.handler = async (event, context, callback) => {
 
   let schedule = {};
   if (latitude && longitude) {
-    const feed = findFeedByEvent(event);
+    const line = getLineByEvent(event);
     const station = findStationByCoords({ 
       latitude: Number(latitude),
       longitude: Number(longitude)
     });
-    schedule = await findScheduleByStation(station, feed);
+    schedule = await findScheduleByStation(station, line);
   }
 
   const response = {
