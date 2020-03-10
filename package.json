@@ -16,6 +16,12 @@
   },
   "homepage": "https://github.com/ddamato/willarrive.in#readme",
   "dependencies": {
+    "geolib": "^3.2.1",
+    "mta-gtfs": "^1.1.0",
+    "mta-subway-stations": "0.0.2",
     "nunjucks": "^3.2.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0"
   }
 }
