@@ -18,6 +18,8 @@ module.exports.handler = async (event, context, callback) => {
       latitude: Number(latitude),
       longitude: Number(longitude)
     });
+    console.log('station:', station);
+    console.log('line:', line);
     schedule = await findScheduleByStation(station, line);
   }
 

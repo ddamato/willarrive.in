@@ -41,14 +41,14 @@ function directionSelection(schedule) {
 
   const select = document.querySelector('.direction-selection');
   select.innerHTML = Object.keys(options).map((option) => {
-    return `<option value=${option}>${option}</option>`;
+    return `<option value=${encodeURIComponent(option)}>${option}</option>`;
   }).join('');
   const times = document.querySelector('.time-slider');
   select.addEventListener('change', ({ target }) => onSelect(target, times));
 }
 
 function onSelect(select, target) {
-  target.innerHTML = options[select.value].map((time) => {
+  target.innerHTML = options[decodeURIComponent(select.value)].map((time) => {
     // TODO: Convert to now diff
     return `<li>${new Date(time).toLocaleString()}</li>`;
   }).join('');
@@ -56,7 +56,7 @@ function onSelect(select, target) {
 
 function atStation(name) {
   const closestStation = document.querySelector('.closest-station');
-  closestStation = name;
+  closestStation.textContent = name;
 }
 
 if (window.location.href !== 'https://willarrive.in/') {
