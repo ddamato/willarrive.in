@@ -23,3 +23,13 @@ h1 {
   line-height: 3rem;
   text-align: center;
 }
+
+.pre-geo,
+.post-geo {
+  display: none;
+}
+
+.pre-geo.active,
+.post-geo.active {
+  display: block;
+}
