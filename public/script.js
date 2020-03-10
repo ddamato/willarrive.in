@@ -23,7 +23,7 @@ function directionSelection(schedule) {
     if (entry.bound !== entry.destination) {
       option = `${entry.bound} (${entry.destination}) bound`;
     }
-    if (!selects[option]) {
+    if (!options[option]) {
       options[option] = [];
     }
     options[option].push(entry.time);
