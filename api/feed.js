@@ -7,7 +7,7 @@ module.exports.handler = async (event, context, callback) => {
   const { queryStringParameters } = event;
   const { latitude, longitude } = queryStringParameters || {};
 
-  let schedule;
+  let schedule = {};
   if (latitude && longitude) {
     const feed = findFeedByEvent(event);
     const station = findStationByCoords({ 
