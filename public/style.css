@@ -6,4 +6,20 @@ body {
   background-color: var(--backgroundColor, #fff);
   color: var(--foregroundColor, #000);
   font-family: Helvetica, Arial, sans-serif;
+  margin: 1rem;
+}
+
+h1 {
+  margin: 0;
+}
+
+.route {
+  display: inline-block;
+  background-color: var(--foregroundColor, #000);
+  color: var(--backgroundColor, #fff);
+  border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
+  line-height: 3rem;
+  text-align: center;
 }
