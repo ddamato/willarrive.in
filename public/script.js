@@ -48,6 +48,10 @@ function handleResponse(html) {
 }
 
 function timeDiff(isoTime) {
+  if (isoTime === 'N/A') {
+    return '∞ minutes';
+  }
+
   const now = new Date().getTime();
   const future = new Date(isoTime).getTime();
   const minutes = Math.round((future - now) / 60000);
