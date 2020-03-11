@@ -24,14 +24,16 @@ module.exports.handler = async (event, context, callback) => {
   const { latitude, longitude } = queryStringParameters || {};
 
   if (latitude && longitude) {
+    const randomIndex = Math.floor(Math.random() * certainty.length);
     const line = getLineByEvent(event);
     const stops = await mta(line);
     const stop = findNearestStop(stops, Number(latitude), Number(longitude));
-    const randomIndex = Math.floor(Math.random() * certainty.length);
+    const arrivals = parseArrivals(stop);
     response.body = nunjucks.render(FEED_NJK_PATH, {
       line,
       certainty: certainty[randomIndex],
-      ...parseArrivals(stop)
+      stopName: stop.name,
+      arrivals,
     });
   }
   callback(null, response);
