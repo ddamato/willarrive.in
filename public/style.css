@@ -24,12 +24,15 @@ h1 {
   text-align: center;
 }
 
-.pre-geo,
-.post-geo {
-  display: none;
+.allow-geo {
+  font: inherit;
+  background: transparent;
+  color: inherit;
+  border: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.pre-geo.active,
-.post-geo.active {
-  display: block;
+.allow-geo:focus {
+  outline: 0;
 }

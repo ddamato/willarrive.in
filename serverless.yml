@@ -13,7 +13,11 @@ functions:
     handler: api/router.handler
     environment:
       WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
+      WAI_NEARBY_STOPS_KEY: '${param:WAI_NEARBY_STOPS_KEY}'
+      WAI_ROUTE_STOPS_KEY: '${param:WAI_ROUTE_STOPS_KEY}'
   feed:
     handler: api/feed.handler
     environment:
       WAI_MTA_API_KEY: '${param:WAI_MTA_API_KEY}'
+      WAI_NEARBY_STOPS_KEY: '${param:WAI_NEARBY_STOPS_KEY}'
+      WAI_ROUTE_STOPS_KEY: '${param:WAI_ROUTE_STOPS_KEY}'

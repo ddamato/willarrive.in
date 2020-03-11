@@ -17,8 +17,8 @@
   "homepage": "https://github.com/ddamato/willarrive.in#readme",
   "dependencies": {
     "geolib": "^3.2.1",
-    "mta-realtime-subway-departures": "0.0.13",
     "mta-subway-stations": "0.0.2",
+    "node-fetch": "^2.6.0",
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {

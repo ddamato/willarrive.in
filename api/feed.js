@@ -1,32 +1,38 @@
+const path = require('path');
+const nunjucks = require('nunjucks');
 const prepareHeaders = require('../lib/headers.js');
+const certainty = require('../lib/certainty.js');
 const { 
   getLineByEvent,
-  findStationByCoords,
-  findScheduleByStation
+  findNearestStop,
+  parseArrivals,
 } = require('../lib/feed.js');
+const mta = require('../lib/mta.js');
+
+const FEED_NJK_PATH = path.resolve(__dirname, '..', 'templates', 'feed.njk');
 
 module.exports.handler = async (event, context, callback) => {
   const headers = prepareHeaders(event);
 
-  const { queryStringParameters } = event;
-  const { latitude, longitude } = queryStringParameters || {};
-
-  let schedule = {};
-  if (latitude && longitude) {
-    const line = getLineByEvent(event);
-    const station = findStationByCoords({ 
-      latitude: Number(latitude),
-      longitude: Number(longitude)
-    });
-    console.log('station:', station);
-    console.log('line:', line);
-    schedule = await findScheduleByStation(station, line);
-  }
-
   const response = {
     statusCode: 200,
     headers,
-    body: JSON.stringify(schedule),
-  };
+    body: 'Not found',
+  }
+
+  const { queryStringParameters } = event;
+  const { latitude, longitude } = queryStringParameters || {};
+
+  if (latitude && longitude) {
+    const line = getLineByEvent(event);
+    const stops = await mta(line);
+    const stop = findNearestStop(stops, Number(latitude), Number(longitude));
+    const randomIndex = Math.floor(Math.random() * certainty.length);
+    response.body = nunjucks.render(FEED_NJK_PATH, {
+      line,
+      certainty: certainty[randomIndex],
+      ...parseArrivals(stop)
+    });
+  }
   callback(null, response);
 }
