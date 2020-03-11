@@ -87,6 +87,7 @@ a {
   background-color: inherit;
   -webkit-appearance: none;
   appearance: none;
+  cursor: pointer;
 }
 
 .btn:focus,
