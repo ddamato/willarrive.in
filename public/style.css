@@ -68,11 +68,17 @@ a {
   color: var(--backgroundColor);
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
+  position: relative;
 }
 
 .destinations-sign:after {
   content: '\25be';
-  padding-right: 1rem;
+  padding: 0 1rem;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  pointer-events: none;
 }
 
 .destinations {
@@ -88,6 +94,9 @@ a {
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
+  max-width: 100%;
+  padding-right: 3rem;
+  white-space: pre-line;
 }
 
 .btn:focus,
