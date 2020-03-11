@@ -62,12 +62,31 @@ a {
   font-weight: 700;
 }
 
+.destinations-sign {
+  margin: 1rem 0;
+  background-color: var(--foregroundColor);
+  color: var(--backgroundColor);
+  display: inline-flex;
+  align-items: center;
+}
+
+.destinations-sign:after {
+  content: '\25be';
+  padding-right: 1rem;
+}
+
 .destinations {
   display: block;
-  width: 100%;
   font: inherit;
-  margin-bottom: 2rem;
+  border: 0;
+  border-radius: 0;
   padding: .5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: inherit;
+  background-color: inherit;
+  -webkit-appearance: none;
+  appearance: none;
 }
 
 .btn:focus,
@@ -77,6 +96,7 @@ a {
 
 .time-delta {
   border-bottom: 4px solid;
+  white-space: nowrap;
 }
 
 .win-heading {
