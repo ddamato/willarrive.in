@@ -24,13 +24,13 @@ h1 {
   text-align: center;
 }
 
-.allow-geo {
+.btn {
   font: inherit;
-  background: var(--backgroundColor, #fff);
-  color: var(--foregroundColor, #000);
+  background: var(--foregroundColor, #fff);
+  color: var(--backgroundColor, #000);
   border: 0;
   margin: 0;
-  padding: .5rem 1rem;
+  padding: .25em .5em;
   border-radius: 2rem;
   cursor: pointer;
 }
@@ -43,7 +43,7 @@ h1 {
   padding: .5rem;
 }
 
-.allow-geo:focus,
+.btn:focus,
 .destinations:focus {
   outline: 0;
 }
