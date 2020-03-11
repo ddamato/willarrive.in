@@ -1,8 +1,9 @@
-<select>
+<select class="destinations">
 {% for bound, isotime in arrivals %}
-  <option value="{{ isotime }}">{{ bound }}</option>
+  <option value="{{ isotime }}">{{ bound }} bound</option>
 {% else %}
   <option>Please wait...<option>
 {% endfor %}
 </select>
-<h1>The <span class="route">{{ line | capitalize }}</span> will <em>{{ certainty }}</em> arrive in <span class="time-delta"></span> at {{ stopName }} station</h1>
+<h1>The <span class="route">{{ line | capitalize }}</span> will <em>{{ certainty }}</em> arrive in <span class="time-delta"></span> at {{ stopName }} station.</h1>
+<p>Did you miss that train? Reload for a new time.</p>

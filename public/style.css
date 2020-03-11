@@ -26,13 +26,28 @@ h1 {
 
 .allow-geo {
   font: inherit;
-  background: transparent;
-  color: inherit;
+  background: var(--backgroundColor, #fff);
+  color: var(--foregroundColor, #000);
   border: 0;
   margin: 0;
-  padding: 0;
+  padding: .5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
 }
 
-.allow-geo:focus {
+.destinations {
+  display: block;
+  width: 100%;
+  font: inherit;
+  margin-bottom: 2rem;
+  padding: .5rem;
+}
+
+.allow-geo:focus,
+.destinations:focus {
   outline: 0;
+}
+
+.time-delta {
+  border-bottom: 1px solid;
 }
