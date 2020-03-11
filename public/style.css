@@ -31,7 +31,7 @@ h1 {
 }
 
 hr {
-  border: 3px solid;
+  border: 2px solid;
 }
 
 p {
@@ -80,5 +80,5 @@ a {
 }
 
 .time-delta {
-  border-bottom: 1px solid;
+  border-bottom: 4px solid;
 }
