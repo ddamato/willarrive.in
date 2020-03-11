@@ -41,7 +41,7 @@ module.exports.handler = async (event, context, callback) => {
   }
 
   if (station) {
-    const { stopName, stopId, arrivals } = await getArrivalsByStation(station); 
+    const { stopName, stopId, arrivals } = await getArrivalsByStation(decodeURIComponent(station));
     response.body = nunjucks.render(FEED_NJK_PATH, {
       line,
       certainty,
@@ -65,7 +65,8 @@ async function getArrivalsByCoords(line, latitude, longitude) {
 }
 
 async function getArrivalsByStation(station) {
-  const stop = getScheduleByStopId(station);
+  const stops = await getScheduleByStopId(station);
+  const stop = stops.shift();
   return {
     stopName: stop.name,
     stopId: stop.id,
