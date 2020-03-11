@@ -3,14 +3,33 @@
 }
 
 body {
-  background-color: var(--backgroundColor, #fff);
-  color: var(--foregroundColor, #000);
+  background-color: var(--backgroundColor, #000);
+  color: var(--foregroundColor, #fff);
   font-family: Helvetica, Arial, sans-serif;
   margin: 1rem;
 }
 
-h1 {
-  margin: 0;
+body > * {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 700;
+}
+
+h1, h2 {
+  line-height: 1.25;
+}
+
+hr {
+  border: 3px solid;
+}
+
+p {
+  line-height: 1.5;
+}
+
+a {
+  color: #0f61a9;
 }
 
 .route {
