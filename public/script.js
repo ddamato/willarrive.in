@@ -4,7 +4,7 @@ function getPosition(options) {
 
 async function init() {
   const allowPosition = document.querySelector('.allow-geo');
-  allowPosition.addEventListener('click', fetchFeed);
+  allowPosition.addEventListener('click', fetchPosition);
 }
 
 async function fetchPosition() {
