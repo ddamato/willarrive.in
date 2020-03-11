@@ -7,12 +7,11 @@ async function init() {
   allowPosition.addEventListener('click', fetchFeed);
 }
 
-let position;
-
 async function fetchPosition() {
   this.outerHTML = 'wait...';
   try {
-    position = await getPosition();
+    const { coords } = await getPosition();
+    sessionStorage.coords = JSON.stringify({ coords });
     fetchFeed();
   } catch (err) {
     throw new Error(err);
@@ -20,12 +19,12 @@ async function fetchPosition() {
 }
 
 async function fetchFeed() {
-  if (!position.coords) {
+  if (!sessionStorage.coords) {
     return;
   }  
 
   try {
-    const { latitude, longitude } = position.coords || {};
+    const { latitude, longitude } = JSON.parse(sessionStorage.coords);
     const html = await fetch(`/feed?latitude=${latitude}&longitude=${longitude}`).then((res) => res.text());
     handleResponse(html);
   } catch (err) {
