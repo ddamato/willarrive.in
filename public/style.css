@@ -124,3 +124,14 @@ a {
 .win-heading:hover .collapse {
   max-width: 0;
 }
+
+footer {
+  margin-top: 10rem;
+  text-align: right;
+  font-size: .8rem;
+}
+
+footer a {
+  color: inherit;
+  text-decoration: none;
+}
