@@ -22,28 +22,36 @@ async function fetchPosition() {
 }
 
 async function fetchFeed() {
-  if (!sessionStorage.coords) {
-    return;
-  }  
-
-  try {
-    const { latitude, longitude } = JSON.parse(sessionStorage.coords);
-    const html = await fetch(`/feed?latitude=${latitude}&longitude=${longitude}`).then((res) => res.text());
-    handleResponse(html);
-  } catch (err) {
-    throw new Error(err);
+  if (sessionStorage.station) {
+    await getHtmlByStationId();
+  } else if (sessionStorage.coords) {
+    await getHtmlByCoords();
   }
+}
+
+async function getHtmlByCoords() {
+  const params = new URLSearchParams(JSON.parse(sessionStorage.coords));
+  fetch(`/feed?${params}`).then((res) => res.text()).then(handleResponse);
+}
+
+async function getHtmlByStationId() {
+  const { station } = sessionStorage;
+  const params = new URLSearchParams({ station });
+  fetch(`/feed?${params}`).then((res) => res.text()).then(handleResponse);
 }
 
 function handleResponse(html) {
   document.body.innerHTML = html;
   const select = document.querySelector('.destinations');
+  const station = document.querySelector('.station-info');
   const time = document.querySelector('.time-delta');
   const reloader = document.querySelector('.reload');
   select.addEventListener('change', () => {
     time.textContent = timeDiff(select.value);
   });
   time.textContent = timeDiff(select.value);
+  sessionStorage.station = station.dataset.id;
+
   reloader.addEventListener('click', fetchFeed);
 }
 

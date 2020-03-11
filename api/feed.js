@@ -30,21 +30,23 @@ module.exports.handler = async (event, context, callback) => {
   const line = getLineByEvent(event);
 
   if (latitude && longitude) {
-    const { stopName, arrivals } = await getArrivalsByCoords(line, latitude, longitude);
+    const { stopName, stopId, arrivals } = await getArrivalsByCoords(line, latitude, longitude);
     response.body = nunjucks.render(FEED_NJK_PATH, {
       line,
       certainty, 
       stopName,
+      stopId,
       arrivals,
     });
   }
 
   if (station) {
-    const { stopName, arrivals } = await getArrivalsByStation(station); 
+    const { stopName, stopId, arrivals } = await getArrivalsByStation(station); 
     response.body = nunjucks.render(FEED_NJK_PATH, {
       line,
       certainty,
       stopName,
+      stopId,
       arrivals,
     });
   }
@@ -57,6 +59,7 @@ async function getArrivalsByCoords(line, latitude, longitude) {
   const stop = findNearestStop(stops, Number(latitude), Number(longitude));
   return {
     stopName: stop.name,
+    stopId: stop.id,
     arrivals: parseArrivals(stop),
   }
 }
@@ -65,6 +68,7 @@ async function getArrivalsByStation(station) {
   const stop = getScheduleByStopId(station);
   return {
     stopName: stop.name,
+    stopId: stop.id,
     arrivals: parseArrivals(stop),
   }
 }
