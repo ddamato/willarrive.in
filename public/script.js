@@ -13,7 +13,8 @@ async function fetchPosition() {
   this.outerHTML = 'wait...';
   try {
     const { coords } = await getPosition();
-    sessionStorage.coords = JSON.stringify({ coords });
+    const { latitude, longitude } = coords;
+    sessionStorage.coords = JSON.stringify({ latitude, longitude });
     fetchFeed();
   } catch (err) {
     throw new Error(err);
