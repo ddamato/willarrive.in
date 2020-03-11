@@ -22,8 +22,9 @@ async function fetchPosition() {
 }
 
 async function fetchFeed() {
-  if (sessionStorage.station) {
-    await getHtmlByStationId();
+  const station = document.querySelector('.station-info');
+  if (station) {
+    await getHtmlByStationId(station.dataset.id);
   } else if (sessionStorage.coords) {
     await getHtmlByCoords();
   }
@@ -34,8 +35,7 @@ async function getHtmlByCoords() {
   fetch(`/feed?${params}`).then((res) => res.text()).then(handleResponse);
 }
 
-async function getHtmlByStationId() {
-  const { station } = sessionStorage;
+async function getHtmlByStationId(station) {
   const params = new URLSearchParams({ station });
   fetch(`/feed?${params}`).then((res) => res.text()).then(handleResponse);
 }
@@ -43,14 +43,12 @@ async function getHtmlByStationId() {
 function handleResponse(html) {
   document.body.innerHTML = html;
   const select = document.querySelector('.destinations');
-  const station = document.querySelector('.station-info');
   const time = document.querySelector('.time-delta');
   const reloader = document.querySelector('.reload');
   select.addEventListener('change', () => {
     time.textContent = timeDiff(select.value);
   });
   time.textContent = timeDiff(select.value);
-  sessionStorage.station = station.dataset.id;
 
   reloader.addEventListener('click', fetchFeed);
 }
