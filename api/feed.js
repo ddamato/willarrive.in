@@ -31,7 +31,7 @@ module.exports.handler = async (event, context, callback) => {
     const content = await getArrivalsByCoords(line, latitude, longitude);
     response.body = nunjucks.render(FEED_NJK_PATH, content);
   } else if (station) {
-    const content = await getArrivalsByStation(decodeURIComponent(station));
+    const content = await getArrivalsByStation(line, decodeURIComponent(station));
     response.body = nunjucks.render(FEED_NJK_PATH, content);
   }
 
@@ -41,8 +41,9 @@ module.exports.handler = async (event, context, callback) => {
 async function getArrivalsByCoords(line, latitude, longitude) {
   const stops = await getScheduleByLine(line);
   const stop = findNearestStop(stops, Number(latitude), Number(longitude));
+  stop.line = line;
   return {
-    line: getLineFromRouteId(stop.routeId),
+    line,
     certainty: getRandomCertainty(),
     stopName: stop.name,
     stopId: stop.id,
@@ -50,20 +51,17 @@ async function getArrivalsByCoords(line, latitude, longitude) {
   }
 }
 
-async function getArrivalsByStation(station) {
+async function getArrivalsByStation(line, station) {
   const stops = await getScheduleByStopId(station);
   const stop = stops.shift();
+  stop.line = line;
   return {
-    line: getLineFromRouteId(stop.routeId),
+    line,
     certainty: getRandomCertainty(),
     stopName: stop.name,
     stopId: stop.id,
     arrivals: parseArrivals(stop),
   }
-}
-
-function getLineFromRouteId(routeId) {
-  return routeId.replace('MTASBWY:', '');
 }
 
 function getRandomCertainty() {
