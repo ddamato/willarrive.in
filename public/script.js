@@ -3,6 +3,7 @@ function getPosition(options) {
 }
 
 let t;
+let geoposition;
 
 async function init() {
   const allowPosition = document.querySelector('.allow-geo');
@@ -15,8 +16,7 @@ async function fetchPosition() {
   this.outerHTML = 'wait...';
   try {
     const { coords } = await getPosition();
-    const { latitude, longitude } = coords;
-    sessionStorage.coords = JSON.stringify({ latitude, longitude });
+    geoposition = coords;
     fetchFeed();
   } catch (err) {
     throw new Error(err);
@@ -30,13 +30,13 @@ async function fetchFeed() {
   const station = document.querySelector('.station-info');
   if (station) {
     await getHtmlByStationId(station.dataset.id);
-  } else if (sessionStorage.coords) {
+  } else if (geoposition) {
     await getHtmlByCoords();
   }
 }
 
 async function getHtmlByCoords() {
-  const params = new URLSearchParams(JSON.parse(sessionStorage.coords));
+  const params = new URLSearchParams(geoposition);
   fetch(`/feed?${params}`).then((res) => res.text()).then(handleResponse);
 }
 
