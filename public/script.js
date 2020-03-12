@@ -55,6 +55,7 @@ function handleResponse(html) {
 function startTime() {
   const time = document.querySelector('.time-delta');
   const select = document.querySelector('.destinations');
+  time.textContent = timeDiff(select.value);
   t = setInterval(() => {
     time.textContent = timeDiff(select.value);
   }, 10000);
