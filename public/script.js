@@ -49,12 +49,20 @@ function handleResponse(html) {
   document.body.innerHTML = html;
   const reloader = document.querySelector('.reload');
   reloader.addEventListener('click', fetchFeed);
-  startTime();
+  initTime();
 }
 
-function startTime() {
+function initTime() {
   const time = document.querySelector('.time-delta');
   const select = document.querySelector('.destinations');
+  select.addEventListener('change', () => {
+    clearInterval(t);
+    setTime(time, select);
+  });
+  setTime(time, select);
+}
+
+function setTime(time, select) {
   time.textContent = timeDiff(select.value);
   t = setInterval(() => {
     time.textContent = timeDiff(select.value);
