@@ -16,7 +16,10 @@ async function fetchPosition() {
   this.outerHTML = 'wait...';
   try {
     const { coords } = await getPosition();
-    geoposition = coords;
+    geoposition = {
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    };
     fetchFeed();
   } catch (err) {
     throw new Error(err);
