@@ -45,6 +45,8 @@ async function getHtmlByStationId(station) {
   fetch(`/feed?${params}`).then((res) => res.text()).then(handleResponse);
 }
 
+let selected;
+
 function handleResponse(html) {
   document.body.innerHTML = html;
   const reloader = document.querySelector('.reload');
@@ -55,7 +57,14 @@ function handleResponse(html) {
 function initTime() {
   const time = document.querySelector('.time-delta');
   const select = document.querySelector('.destinations');
+
+  if(typeof selected !== 'number') {
+    selected = 0;
+  }
+
+  select.selectedIndex = selected;
   select.addEventListener('change', () => {
+    selected = select.selectedIndex;
     clearInterval(t);
     setTime(time, select);
   });
