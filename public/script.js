@@ -2,6 +2,8 @@ function getPosition(options) {
   return new Promise((resolve, reject) => navigator.geolocation.getCurrentPosition(resolve, reject, options));
 }
 
+let t;
+
 async function init() {
   const allowPosition = document.querySelector('.allow-geo');
   if (allowPosition) {
@@ -22,6 +24,9 @@ async function fetchPosition() {
 }
 
 async function fetchFeed() {
+  if (t) {
+    clearInterval(t);
+  }
   const station = document.querySelector('.station-info');
   if (station) {
     await getHtmlByStationId(station.dataset.id);
@@ -42,15 +47,17 @@ async function getHtmlByStationId(station) {
 
 function handleResponse(html) {
   document.body.innerHTML = html;
-  const select = document.querySelector('.destinations');
-  const time = document.querySelector('.time-delta');
   const reloader = document.querySelector('.reload');
-  select.addEventListener('change', () => {
-    time.textContent = timeDiff(select.value);
-  });
-  time.textContent = timeDiff(select.value);
-
   reloader.addEventListener('click', fetchFeed);
+  startTime();
+}
+
+function startTime() {
+  const time = document.querySelector('.time-delta');
+  const select = document.querySelector('.destinations');
+  t = setInterval(() => {
+    time.textContent = timeDiff(select.value);
+  }, 10000);
 }
 
 function timeDiff(isoTime) {
