@@ -42,7 +42,7 @@ async function getArrivalsByCoords(line, latitude, longitude) {
   const stops = await getScheduleByLine(line);
   const stop = findNearestStop(stops, Number(latitude), Number(longitude));
   return {
-    line: stop.routeId,
+    line: getLineFromRouteId(stop.routeId),
     certainty: getRandomCertainty(),
     stopName: stop.name,
     stopId: stop.id,
@@ -54,12 +54,16 @@ async function getArrivalsByStation(station) {
   const stops = await getScheduleByStopId(station);
   const stop = stops.shift();
   return {
-    line: stop.routeId,
+    line: getLineFromRouteId(stop.routeId),
     certainty: getRandomCertainty(),
     stopName: stop.name,
     stopId: stop.id,
     arrivals: parseArrivals(stop),
   }
+}
+
+function getLineFromRouteId(routeId) {
+  return routeId.replace('MTASBWY:', '');
 }
 
 function getRandomCertainty() {
