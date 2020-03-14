@@ -3,6 +3,7 @@ const nunjucks = require('nunjucks');
 const prepareHeaders = require('../lib/headers.js');
 const certainties = require('../lib/certainty.js');
 const { 
+  findFeedByEvent,
   getLineByEvent,
   findNearestStop,
   parseArrivals,
@@ -25,6 +26,12 @@ module.exports.handler = async (event, context, callback) => {
 
   const { queryStringParameters } = event;
   const { latitude, longitude, station } = queryStringParameters || {};
+
+  if (!findFeedByEvent(event)) {
+    callback(null, response);
+    return;
+  }
+
   const line = getLineByEvent(event);
 
   if (latitude && longitude) {
