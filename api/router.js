@@ -1,6 +1,7 @@
 const path = require('path');
 const nunjucks = require('nunjucks');
 const { findFeedByEvent, getLineByEvent } = require('../lib/feed.js');
+const getResource = require('../lib/resource.js');
 
 const INDEX_NJK_PATH = path.resolve(__dirname, '..', 'templates', 'index.njk');
 
@@ -13,8 +14,7 @@ module.exports.handler = (event, context, callback) => {
 
   const feed = findFeedByEvent(event);
   if (feed) {
-    const resource = event.requestContext.path;
-    if (resource === '/') {
+    if (event.requestContext.path === '/') {
       response = {
         statusCode: 200,
         headers: { 'Content-Type': 'text/html' },
@@ -26,10 +26,11 @@ module.exports.handler = (event, context, callback) => {
         })
       }
     } else {
+      const resource = getResource(event.requestContext.path);
       response = {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ resource }),
+        body: resource,
       }
     }    
   }
