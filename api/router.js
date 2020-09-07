@@ -13,7 +13,12 @@ module.exports.handler = (event, context, callback) => {
 
   const feed = findFeedByEvent(event);
   if (feed) {
-    const body = nunjucks.render(INDEX_NJK_PATH, {
+    let body;
+    const resource = event.requestContext.path;
+    if (resource !== '/') {
+      body = 'hello world';
+    }
+    body = nunjucks.render(INDEX_NJK_PATH, {
       routeId: getLineByEvent(event),
       backgroundColor: feed.lineColor,
       foregroundColor: feed.foregroundColor,
