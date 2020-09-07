@@ -3,6 +3,7 @@ const { findFeedByEvent, getLineByEvent } = require('../lib/feed.js');
 
 module.exports.handler = async (event, context, callback) => {
   const headers = prepareHeaders(event);
+  headers['Content-Type'] = 'application/json';
 
   const response = {
     statusCode: 200,
