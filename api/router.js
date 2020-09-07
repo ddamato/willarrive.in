@@ -13,22 +13,25 @@ module.exports.handler = (event, context, callback) => {
 
   const feed = findFeedByEvent(event);
   if (feed) {
-    let body;
     const resource = event.requestContext.path;
-    if (resource !== '/') {
-      body = 'hello world';
-    }
-    body = nunjucks.render(INDEX_NJK_PATH, {
-      routeId: getLineByEvent(event),
-      backgroundColor: feed.lineColor,
-      foregroundColor: feed.foregroundColor,
-      base: Location,
-    });
-    response = {
-      statusCode: 200,
-      headers: { 'Content-Type': 'text/html' },
-      body,
-    }
+    if (resource === '/') {
+      response = {
+        statusCode: 200,
+        headers: { 'Content-Type': 'text/html' },
+        body: nunjucks.render(INDEX_NJK_PATH, {
+          routeId: getLineByEvent(event),
+          backgroundColor: feed.lineColor,
+          foregroundColor: feed.foregroundColor,
+          base: Location,
+        })
+      }
+    } else {
+      response = {
+        statusCode: 200,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ resource }),
+      }
+    }    
   }
 
   callback(null, response);
