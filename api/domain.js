@@ -1,4 +1,5 @@
 const prepareHeaders = require('../lib/headers.js');
+const { findFeedByEvent, getLineByEvent } = require('../lib/feed.js');
 
 module.exports.handler = async (event, context, callback) => {
   const headers = prepareHeaders(event);
