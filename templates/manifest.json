@@ -1,6 +1,6 @@
 {
-  "name": "{{ line }} will arrive in",
-  "short_name": "{{ line }}.willarrive.in",
+  "name": "{{ routeId }} will arrive in",
+  "short_name": "{{ routeId }}.willarrive.in",
   "description": "Arrival information for the NYC Subway system",
   "icons": [],
   "start_url": "/",

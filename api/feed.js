@@ -24,7 +24,7 @@ module.exports.handler = async (event, context, callback) => {
     body: 'Not found',
   }
 
-  const { queryStringParameters } = event;
+  const { queryStringParameters } = event || {};
   const { latitude, longitude, station } = queryStringParameters || {};
 
   if (!findFeedByEvent(event)) {

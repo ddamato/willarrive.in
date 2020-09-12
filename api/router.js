@@ -14,25 +14,23 @@ module.exports.handler = (event, context, callback) => {
 
   const feed = findFeedByEvent(event);
   if (feed) {
-    if (event.requestContext.path === '/') {
+    const data =  {
+      routeId: getLineByEvent(event),
+      backgroundColor: feed.lineColor,
+      foregroundColor: feed.foregroundColor,
+      base: Location,
+    };
+
+    const { queryStringParameters } = event;
+    if (queryStringParameters) {
+      response = getResource(queryStringParameters, data);
+    } else {
       response = {
         statusCode: 200,
         headers: { 'Content-Type': 'text/html' },
-        body: nunjucks.render(INDEX_NJK_PATH, {
-          routeId: getLineByEvent(event),
-          backgroundColor: feed.lineColor,
-          foregroundColor: feed.foregroundColor,
-          base: Location,
-        })
+        body: nunjucks.render(INDEX_NJK_PATH, data),
       }
-    } else {
-      const resource = getResource(event.requestContext.path);
-      response = {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: resource,
-      }
-    }    
+    }
   }
 
   callback(null, response);
