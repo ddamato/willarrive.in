@@ -15,7 +15,7 @@ async function fetchPosition() {
     };
     fetchFeed();
   } catch (err) {
-    document.body.innerHTML = `<h1>There was an error: ${err}</h1>`;
+    document.body.innerHTML = `<h1>${typeof err === 'string' ? err : err.code + ': ' +  err.message}</h1>`;
   }
 }
 
