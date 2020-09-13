@@ -217,7 +217,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/willarrivein-service/dev/1599933349788-2020-09-12T17:55:49.788Z/willarrivein-service.zip"
+                "S3Key": "serverless/willarrivein-service/dev/1599960065745-2020-09-13T01:21:05.745Z/willarrivein-service.zip"
               },
               "FunctionName": "willarrivein-service-dev-router",
               "Handler": "s_router.handler",
@@ -242,14 +242,14 @@
               "RouterLogGroup"
             ]
           },
-          "RouterLambdaVersiontyYf5JUORuLN4DpNdleia5VYy0D2J5PeCOtlWtICseI": {
+          "RouterLambdaVersionCVN0jGKLR76XfUDE2VQErET2KOHXvVuJXUH9uUf8kE": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RouterLambdaFunction"
               },
-              "CodeSha256": "YvlrIMH+vZQfRLBt7GsJo6pwXnv+yBwBBSKyYT1G+Kk="
+              "CodeSha256": "iiYI1axKsY9uS7gH3zm9Kc9yxTxWa/HDAiEp8n9M270="
             }
           },
           "FeedLambdaFunction": {
@@ -259,7 +259,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/willarrivein-service/dev/1599933349788-2020-09-12T17:55:49.788Z/willarrivein-service.zip"
+                "S3Key": "serverless/willarrivein-service/dev/1599960065745-2020-09-13T01:21:05.745Z/willarrivein-service.zip"
               },
               "FunctionName": "willarrivein-service-dev-feed",
               "Handler": "s_feed.handler",
@@ -284,14 +284,14 @@
               "FeedLogGroup"
             ]
           },
-          "FeedLambdaVersionGvR11XlnPnOiq4gDfvd8cxT7ctzZf4E48qaihOMMOSg": {
+          "FeedLambdaVersion4cr0LdTipQOGDKkLwoXRJDrPysnp99WzrHvRMftbvM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "FeedLambdaFunction"
               },
-              "CodeSha256": "YvlrIMH+vZQfRLBt7GsJo6pwXnv+yBwBBSKyYT1G+Kk="
+              "CodeSha256": "iiYI1axKsY9uS7gH3zm9Kc9yxTxWa/HDAiEp8n9M270="
             }
           },
           "CloudWatchLogsSubscriptionFilterRouterLogGroup": {
@@ -332,13 +332,13 @@
           "RouterLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RouterLambdaVersiontyYf5JUORuLN4DpNdleia5VYy0D2J5PeCOtlWtICseI"
+              "Ref": "RouterLambdaVersionCVN0jGKLR76XfUDE2VQErET2KOHXvVuJXUH9uUf8kE"
             }
           },
           "FeedLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "FeedLambdaVersionGvR11XlnPnOiq4gDfvd8cxT7ctzZf4E48qaihOMMOSg"
+              "Ref": "FeedLambdaVersion4cr0LdTipQOGDKkLwoXRJDrPysnp99WzrHvRMftbvM"
             }
           }
         }
@@ -428,7 +428,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "RouterLambdaVersiontyYf5JUORuLN4DpNdleia5VYy0D2J5PeCOtlWtICseI"
+        "versionLogicalId": "RouterLambdaVersionCVN0jGKLR76XfUDE2VQErET2KOHXvVuJXUH9uUf8kE"
       },
       "feed": {
         "handler": "s_feed.handler",
@@ -444,7 +444,7 @@
         "timeout": 6,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "FeedLambdaVersionGvR11XlnPnOiq4gDfvd8cxT7ctzZf4E48qaihOMMOSg"
+        "versionLogicalId": "FeedLambdaVersion4cr0LdTipQOGDKkLwoXRJDrPysnp99WzrHvRMftbvM"
       }
     },
     "configValidationMode": "warn",
@@ -473,7 +473,7 @@
     "artifact": "/Users/ddamato/Documents/willarrive.in/.serverless/willarrivein-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/willarrivein-service/dev/1599933349788-2020-09-12T17:55:49.788Z",
+    "artifactDirectoryName": "serverless/willarrivein-service/dev/1599960065745-2020-09-13T01:21:05.745Z",
     "artifact": "willarrivein-service.zip"
   }
 }

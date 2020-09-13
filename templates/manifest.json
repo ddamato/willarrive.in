@@ -2,7 +2,14 @@
   "name": "{{ routeId }} will arrive in",
   "short_name": "{{ routeId }}.willarrive.in",
   "description": "Arrival information for the NYC Subway system",
-  "icons": [],
+  "icons": [
+    {
+      "src": "/?file=icon.svg",
+      "purpose": "any",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
   "start_url": "/",
   "background_color": "{{ backgroundColor }}",
   "display": "standalone",

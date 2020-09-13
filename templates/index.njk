@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8">
     <title>{{ routeId }}.willarrive.in</title>
@@ -8,6 +8,7 @@
     <meta content="chrome=1" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
     <link rel="manifest" href="/?file=manifest.json"/>
+    <meta name="theme-color" content="{{ backgroundColor }}">
 
     <link rel="icon" type="image/x-icon" href="{{ base }}/favicon.ico">
     <style type="text/css">
@@ -17,9 +18,14 @@
       }
     </style>
     <link type="text/css" href="{{ base }}/styles.css" rel="stylesheet"/>
+
+    <script type="text/javascript">
+      window.onload = () => 'serviceWorker' in navigator && navigator.serviceWorker.register('/?file=sw.js').then((registration) => registration.update()).catch((err) => {});
+    </script>
+
     <script type="text/javascript" src="{{ base }}/script.js" defer></script>
   </head>
   <body>
-    <h1>Please <button class="btn allow-geo">allow geolocation</button></h1>
+    <h1>Please accept geoposition</h1>
   </body>
 </html>

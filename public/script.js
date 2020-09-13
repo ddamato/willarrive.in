@@ -5,15 +5,8 @@ function getPosition(options) {
 let t;
 let geoposition;
 
-async function init() {
-  const allowPosition = document.querySelector('.allow-geo');
-  if (allowPosition) {
-    allowPosition.addEventListener('click', fetchPosition);
-  }
-}
-
 async function fetchPosition() {
-  this.outerHTML = 'wait...';
+  document.body.innerHTML = `<h1>Please wait...</h1>`;
   try {
     const { coords } = await getPosition();
     geoposition = {
@@ -22,7 +15,7 @@ async function fetchPosition() {
     };
     fetchFeed();
   } catch (err) {
-    throw new Error(err);
+    document.body.innerHTML = `<h1>There was an error: ${err}</h1>`;
   }
 }
 
@@ -95,5 +88,5 @@ function timeDiff(isoTime) {
 }
 
 if (window.location.href !== 'https://willarrive.in/') {
-  init();
+  fetchPosition();
 }
